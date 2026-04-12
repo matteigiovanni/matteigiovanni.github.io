@@ -1,0 +1,329 @@
+@import url("https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css");
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+    --bg:           #fafafa;
+    --black:        #0f0f0f;
+    --gray:         #6b6b6b;
+    --border-heavy: 2px solid #e2e2e2;
+    --border-light: 1px solid #b8b8b8;
+
+    --font:         "Geist", sans-serif;
+    --text-sm:      1rem;
+    --text-md:      1.25rem;
+    --text-lg:      1.5rem;
+
+    --gap:          1rem;
+    --max-w:        800px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Type system ────────────────────────────────────────────── */
+/*
+    h1             — var(--text-lg), 700, black
+    h2             — var(--text-md), 600, black
+    p.bold         — var(--text-sm), 700, black
+    p              — var(--text-sm), 400, black
+    p.muted        — var(--text-sm), 400, gray
+    p.italic       — var(--text-sm), 400, italic, black
+    p.italic.muted — var(--text-sm), 400, italic, gray
+    a, button      — var(--text-sm), 400, black
+*/
+
+body {
+    font-family: var(--font);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--black);
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 { font-size: var(--text-lg); font-weight: 700; color: var(--black); }
+h2 { font-size: var(--text-md); font-weight: 600; color: var(--black); }
+
+p              { font-size: var(--text-sm); font-weight: 400; color: var(--black); }
+p.bold         { font-weight: 700; }
+p.muted        { color: var(--gray); }
+p.italic       { font-style: italic; }
+p.italic.muted { color: var(--gray); }
+
+a, button      { font-size: var(--text-sm); font-weight: 400; color: var(--black); text-decoration: none; }
+a:hover        { text-decoration: underline; text-underline-offset: 3px; }
+a.muted, button.muted { color: var(--gray); }
+
+/* ── Layout ─────────────────────────────────────────────────── */
+header, main, footer {
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gap);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: var(--border-heavy);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+}
+
+nav { display: flex; gap: calc(var(--gap) * 2); }
+nav a.active { color: var(--black); font-weight: 700; }
+nav a.active:hover { text-decoration: none; }
+
+header > a { font-weight: 700; }
+
+/* ── Main ───────────────────────────────────────────────────── */
+main { flex: 1; }
+
+/* ── Page intro ─────────────────────────────────────────────── */
+.page-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: calc(var(--gap) * 2) 0;
+    border-bottom: var(--border-light);
+}
+
+/* ── Sections ───────────────────────────────────────────────── */
+section {
+    padding: calc(var(--gap) * 2) 0;
+    border-bottom: var(--border-light);
+}
+
+section:last-of-type { border-bottom: none; }
+
+section h2 { margin-bottom: calc(var(--gap) * 1.25); }
+
+/* ── Entries (contact / experience / education) ─────────────── */
+.entry {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto auto;
+    column-gap: calc(var(--gap) * 1.5);
+    align-items: start;
+    padding: calc(var(--gap) * 0.75) 0;
+}
+
+.entry:last-child { padding-bottom: 0; }
+
+/* logo */
+.entry .logo {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.entry .logo img,
+.entry .logo svg {
+    object-fit: contain;
+}
+
+/* contact: icon = 1.5 lines tall, vertically centered, duotone */
+.contact .entry {
+    align-items: center;
+}
+
+.contact .entry .logo {
+    width:  calc(var(--text-sm) * 1.6 * 1.5);
+    height: calc(var(--text-sm) * 1.6 * 1.5);
+    background: var(--gray);
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.contact .entry .logo svg {
+    width:  100%;
+    height: 100%;
+}
+
+.contact .entry .logo svg path {
+    fill: #ffffff;
+}
+
+/* experience/education: icon = 1 × 3 lines tall, vertically centered, bordered */
+section:not(.contact) .entry {
+    align-items: center;
+}
+
+section:not(.contact) .entry .logo {
+    width:  calc(var(--text-sm) * 1.6 * 3);
+    height: calc(var(--text-sm) * 1.6 * 3);
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    padding: 0;
+    overflow: hidden;
+}
+
+section:not(.contact) .entry .logo img,
+section:not(.contact) .entry .logo svg {
+    width:  100%;
+    height: 100%;
+}
+
+/* meta col 2 row 1 — no gap between lines */
+.entry .meta {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* summary col 2 row 2 */
+.entry > p {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0.4rem;
+}
+
+/* toggle button col 2 row 3 — italic gray */
+.entry > button {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0.15rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font-style: italic;
+    color: var(--gray);
+}
+
+/* bullet list col 2 row 4 */
+.entry > ul {
+    grid-column: 2;
+    grid-row: 4;
+    margin-top: 0.4rem;
+    padding-left: var(--gap);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: none;
+}
+
+.entry > ul li {
+    color: var(--gray);
+    position: relative;
+    padding-left: 0.75rem;
+}
+
+.entry > ul li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--gray);
+}
+
+/* ── Project cards ──────────────────────────────────────────── */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: calc(var(--gap) * 1.25) 0;
+}
+
+.project-card:last-child { padding-bottom: 0; }
+
+.project-card .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.project-card .actions { margin-top: 0.4rem; }
+
+/* ── Actions (buttons row) ──────────────────────────────────── */
+.actions {
+    display: flex;
+    gap: var(--gap);
+    margin-top: 0.25rem;
+}
+
+/* ── Btn ────────────────────────────────────────────────────── */
+.btn {
+    color: var(--gray);
+    border: 1px solid #c8c8c8;
+    padding: 0.35rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.btn-icon {
+    width:  0.9em;
+    height: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-icon svg {
+    width:  100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.btn:hover { color: var(--black); border-color: var(--black); text-decoration: none; }
+
+/* ── Post page ──────────────────────────────────────────────── */
+.post-link-row { margin-top: 0.5rem; }
+
+.post-link-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.link-arrow {
+    width:  0.85em;
+    height: 0.85em;
+    flex-shrink: 0;
+}
+
+/* ── Post embed ─────────────────────────────────────────────── */
+#post-iframe {
+    width: 100%;
+    height: 680px;
+    border: var(--border-light);
+    margin-top: var(--gap);
+    display: block;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer {
+    border-top: var(--border-heavy);
+    padding: var(--gap);
+    margin-top: calc(var(--gap) * 2);
+}
+
+footer p { text-align: center; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 520px) {
+    :root {
+        --text-sm: 0.875rem;
+        --text-md: 1.1rem;
+        --text-lg: 1.3rem;
+    }
+
+    section:not(.contact) .entry .logo {
+        width:  calc(var(--text-sm) * 1.6 * 2);
+        height: calc(var(--text-sm) * 1.6 * 2);
+    }
+}

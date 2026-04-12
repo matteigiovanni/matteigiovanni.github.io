@@ -1,0 +1,18 @@
+[
+  {
+    "id": "sp1500-return-volatility-clustering",
+    "title": "S&P 1500 Return and Volatility Clustering",
+    "excerpt": "Identification of distinct S&P 1500 constituent groups based on daily price return and volatility. Unsupervised machine learning algorithms are run via Scikit-learn on data pulled from yfinance.",
+    "tags": ["Unsupervised ML", "Python", "Scikit-learn", "Financial markets"],
+    "embed": "https://github.com/matteigiovanni/sp1500-clustering/blob/08d0ba388a229c091df0c04466a18ae204872f20/sp1500-clustering.pdf",
+    "github": "https://github.com/matteigiovanni/sp1500-clustering"
+  },
+  {
+    "id": "starbucks-valuation-model",
+    "title": "Starbucks Valuation Model",
+    "excerpt": "Comprehensive equity valuation of Starbucks built on a spreadsheet model, integrating Discounted Cash Flow, Abnormal Profit, and Comparable Multiples analysis. Data is extracted automatically via Python and model assumptions are supported by AI.",
+    "tags": ["Excel", "Python", "DCF", "Multiples"],
+    "embed": "https://github.com/matteigiovanni/sbux-valuation/blob/99437dd6f7f9e8ad97c6aac783f8f0d007b3f514/sbux-valuation.pdf",
+    "github": "https://github.com/matteigiovanni/sbux-valuation"
+  },
+]
